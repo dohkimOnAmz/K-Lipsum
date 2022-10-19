@@ -1,0 +1,6 @@
+server:
+  servlet:
+    context-path: /klipsum
+logging:
+  level:
+    root: info
