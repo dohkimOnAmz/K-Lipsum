@@ -564,6 +564,7 @@
             {
               "Action": [
                 "cloudfront:CreateInvalidation",
+                "codecommit:*",
                 "codebuild:*",
                 "codedeploy:*",
                 "codepipeline:*",
@@ -781,7 +782,7 @@
                 "awslogs-group": {
                   "Ref": "appTaskDefLogGroup"
                 },
-                "awslogs-stream-prefix": "ecs/builders-app",
+                "awslogs-stream-prefix": "builders-app",
                 "awslogs-region": {
                   "Ref" : "AWS::Region"
                 }
@@ -821,7 +822,8 @@
     "appTaskDefLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "UpdateReplacePolicy": "Retain",
-      "DeletionPolicy": "Retain"
+      "DeletionPolicy": "Retain",
+      "LogGroupName": "/Builders/ecs"
     },
     "appServiceSecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",

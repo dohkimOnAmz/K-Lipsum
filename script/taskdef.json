@@ -1,0 +1,36 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "app",
+      "image": "<ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/builders-app",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "dockerLabels": {
+        "name": "builders-app"
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/Builders/ecs",
+          "awslogs-region": "<REGION>",
+          "awslogs-create-group": "true",
+          "awslogs-stream-prefix": "builders-app"
+        }
+      }
+    }
+  ],
+  "taskRoleArn": "arn:aws:iam::<ACCOUNT_ID>:role/DevOpsRole-Builders",
+  "executionRoleArn": "arn:aws:iam::<ACCOUNT_ID>:role/DevOpsRole-Builders",
+  "family": "taskDefApp",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "512",
+  "memory": "1024"
+}
